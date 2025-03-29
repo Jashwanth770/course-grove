@@ -1,9 +1,13 @@
 
 import { Button } from "@/components/ui/button";
 import CourseCard from "./CourseCard";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, SlidersHorizontal } from "lucide-react";
+import CategoryFilters from "./CategoryFilters";
+import { useState } from "react";
 
 const CoursesSection = () => {
+  const [showFilters, setShowFilters] = useState(false);
+
   const courses = [
     {
       id: 1,
@@ -59,6 +63,37 @@ const CoursesSection = () => {
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Explore our most popular courses and start your learning journey today
           </p>
+          
+          <div className="flex justify-center mt-6">
+            <Button 
+              variant="outline" 
+              className="flex items-center"
+              onClick={() => setShowFilters(!showFilters)}
+            >
+              <SlidersHorizontal className="h-4 w-4 mr-2" />
+              {showFilters ? "Hide Filters" : "Show Filters"}
+            </Button>
+          </div>
+        </div>
+
+        {showFilters && (
+          <div className="mb-8">
+            <CategoryFilters />
+          </div>
+        )}
+
+        <div className="flex justify-between items-center mb-6">
+          <div className="text-gray-600">Showing 4 of 234 courses</div>
+          <div className="flex items-center space-x-2">
+            <span className="text-gray-600">Sort by:</span>
+            <select className="border border-gray-300 rounded-md p-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-education-500">
+              <option>Most Popular</option>
+              <option>Highest Rated</option>
+              <option>Newest</option>
+              <option>Price: Low to High</option>
+              <option>Price: High to Low</option>
+            </select>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

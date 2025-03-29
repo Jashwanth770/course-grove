@@ -8,6 +8,7 @@ import TestimonialsSection from "../components/TestimonialsSection";
 import CTASection from "../components/CTASection";
 import NewsletterSection from "../components/NewsletterSection";
 import Footer from "../components/Footer";
+import BecomeInstructorSection from "../components/BecomeInstructorSection";
 
 const Index = () => {
   return (
@@ -18,6 +19,7 @@ const Index = () => {
         <StatsSection />
         <CoursesSection />
         <FeaturesSection />
+        <BecomeInstructorSection />
         <TestimonialsSection />
         <CTASection />
         <NewsletterSection />
