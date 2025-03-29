@@ -10,6 +10,7 @@ import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import CourseDetails from "./pages/CourseDetails";
 import InstructorDashboard from "./pages/InstructorDashboard";
+import { AuthProvider } from "./contexts/AuthContext";
 
 // Create a new QueryClient instance
 const queryClient = new QueryClient();
@@ -18,21 +19,23 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/courses/:courseId" element={<CourseDetails />} />
-            <Route path="/instructor-dashboard" element={<InstructorDashboard />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
+      <AuthProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/auth" element={<Auth />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/courses/:courseId" element={<CourseDetails />} />
+              <Route path="/instructor-dashboard" element={<InstructorDashboard />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }

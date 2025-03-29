@@ -1,13 +1,14 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BookOpen } from "lucide-react";
 import { toast } from "sonner";
+import { useAuth } from "../contexts/AuthContext";
 
 const Auth = () => {
   const navigate = useNavigate();
+  const { login, signup } = useAuth();
   const [loading, setLoading] = useState(false);
   
   // Login form state
@@ -25,13 +26,7 @@ const Auth = () => {
     setLoading(true);
     
     try {
-      // In a real app, this would authenticate with a backend
-      console.log("Logging in with:", { loginEmail, loginPassword });
-      
-      // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // If successful, redirect to dashboard
+      await login(loginEmail, loginPassword);
       toast.success("Logged in successfully!");
       navigate('/dashboard');
     } catch (error) {
@@ -53,17 +48,7 @@ const Auth = () => {
     setLoading(true);
     
     try {
-      // In a real app, this would register with a backend
-      console.log("Registering with:", { 
-        registerName, 
-        registerEmail, 
-        registerPassword 
-      });
-      
-      // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // If successful, redirect to dashboard
+      await signup(registerName, registerEmail, registerPassword);
       toast.success("Registration successful!");
       navigate('/dashboard');
     } catch (error) {
