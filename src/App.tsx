@@ -10,6 +10,7 @@ import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import CourseDetails from "./pages/CourseDetails";
 import InstructorDashboard from "./pages/InstructorDashboard";
+import Wishlist from "./pages/Wishlist";
 import { AuthProvider } from "./contexts/AuthContext";
 
 // Create a new QueryClient instance
@@ -30,6 +31,7 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/courses/:courseId" element={<CourseDetails />} />
               <Route path="/instructor-dashboard" element={<InstructorDashboard />} />
+              <Route path="/wishlist" element={<Wishlist />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

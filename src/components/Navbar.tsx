@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, BookOpen, User, Search as SearchIcon, LogOut, ShoppingCart } from "lucide-react";
+import { Menu, X, BookOpen, User, Search as SearchIcon, LogOut, ShoppingCart, Heart } from "lucide-react";
 import SearchBar from "./SearchBar";
 import CategoryDropdown from "./CategoryDropdown";
 import { useAuth } from "../contexts/AuthContext";
@@ -46,7 +46,13 @@ const Navbar = () => {
             <Link to="/courses" className="text-gray-600 hover:text-education-600 font-medium">Courses</Link>
             <Link to="/instructor-dashboard" className="text-gray-600 hover:text-education-600 font-medium">Teach</Link>
             <Link to="/my-learning" className="text-gray-600 hover:text-education-600 font-medium">My Learning</Link>
+            
             <Link to="/wishlist" className="text-gray-600 hover:text-education-600 relative">
+              <Heart className="w-5 h-5" />
+              <span className="absolute -top-2 -right-2 bg-education-600 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">3</span>
+            </Link>
+            
+            <Link to="/cart" className="text-gray-600 hover:text-education-600 relative">
               <ShoppingCart className="w-5 h-5" />
               <span className="absolute -top-2 -right-2 bg-education-600 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">2</span>
             </Link>
@@ -92,7 +98,11 @@ const Navbar = () => {
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
-            <Link to="/wishlist" className="mr-4 relative text-gray-600">
+            <Link to="/wishlist" className="mr-3 relative text-gray-600">
+              <Heart className="w-5 h-5" />
+              <span className="absolute -top-2 -right-2 bg-education-600 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">3</span>
+            </Link>
+            <Link to="/cart" className="mr-4 relative text-gray-600">
               <ShoppingCart className="w-5 h-5" />
               <span className="absolute -top-2 -right-2 bg-education-600 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">2</span>
             </Link>
@@ -126,6 +136,9 @@ const Navbar = () => {
             </Link>
             <Link to="/wishlist" className="block py-2 px-4 text-gray-600 hover:text-education-600 font-medium">
               Wishlist
+            </Link>
+            <Link to="/cart" className="block py-2 px-4 text-gray-600 hover:text-education-600 font-medium">
+              Cart
             </Link>
             <div className="px-4 pt-3 flex flex-col space-y-2">
               {isAuthenticated ? (
