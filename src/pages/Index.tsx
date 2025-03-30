@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import HeroSection from "../components/HeroSection";
 import StatsSection from "../components/StatsSection";
 import CoursesSection from "../components/CoursesSection";
+import CategorySection from "../components/CategorySection";
 import FeaturesSection from "../components/FeaturesSection";
 import TestimonialsSection from "../components/TestimonialsSection";
 import CTASection from "../components/CTASection";
@@ -16,6 +17,7 @@ const Index = () => {
       <Navbar />
       <main className="flex-grow">
         <HeroSection />
+        <CategorySection />
         <StatsSection />
         <CoursesSection />
         <FeaturesSection />

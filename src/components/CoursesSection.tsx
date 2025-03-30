@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import CourseCard from "./CourseCard";
-import { ArrowRight, SlidersHorizontal } from "lucide-react";
+import { ArrowRight, SlidersHorizontal, Clock, Award } from "lucide-react";
 import CategoryFilters from "./CategoryFilters";
 import { useState } from "react";
 
@@ -11,95 +11,102 @@ const CoursesSection = () => {
   const courses = [
     {
       id: 1,
-      title: "Introduction to Web Development: HTML, CSS & JavaScript",
-      instructor: "Sarah Johnson",
+      title: "The Complete Web Development Bootcamp 2023",
+      instructor: "Dr. Angela Yu",
       rating: 4.8,
-      students: "15,423",
+      students: "215,423",
       price: "$49.99",
       image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800",
-      category: "Programming",
+      category: "Web Development",
       level: "Beginner",
+      duration: "52.5 hours",
+      lessons: 157
     },
     {
       id: 2,
-      title: "Data Science Fundamentals: Python & Statistics",
-      instructor: "Michael Chen",
+      title: "100 Days of Python: Complete Python Pro Bootcamp",
+      instructor: "Jose Portilla",
       rating: 4.7,
-      students: "12,758",
+      students: "312,758",
       price: "$59.99",
       image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&q=80&w=800",
-      category: "Data Science",
-      level: "Intermediate",
+      category: "Python",
+      level: "All Levels",
+      duration: "60 hours",
+      lessons: 100
     },
     {
       id: 3,
-      title: "Digital Marketing Strategy Masterclass",
-      instructor: "Jessica Williams",
+      title: "The Complete Digital Marketing Course - 12 Courses in 1",
+      instructor: "Rob Percival",
       rating: 4.9,
-      students: "21,369",
-      price: "$64.99",
+      students: "321,369",
+      price: "$84.99",
       image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=800",
       category: "Marketing",
       level: "All Levels",
+      duration: "24.5 hours",
+      lessons: 98
     },
     {
       id: 4,
-      title: "Advanced Machine Learning & AI Concepts",
-      instructor: "David Kumar",
+      title: "Machine Learning A-Z: Hands-On Python & R In Data Science",
+      instructor: "Kirill Eremenko",
       rating: 4.6,
-      students: "8,942",
+      students: "198,942",
       price: "$79.99",
       image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80&w=800",
-      category: "Artificial Intelligence",
-      level: "Advanced",
+      category: "Data Science",
+      level: "Intermediate",
+      duration: "42 hours",
+      lessons: 320
     },
   ];
 
   return (
     <section id="courses" className="py-16 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Courses</h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Explore our most popular courses and start your learning journey today
-          </p>
-          
-          <div className="flex justify-center mt-6">
+        <div className="flex justify-between items-center mb-8">
+          <div>
+            <h2 className="text-2xl md:text-3xl font-bold">Students are viewing</h2>
+            <p className="text-gray-600">Courses being watched right now</p>
+          </div>
+          <div className="flex items-center">
             <Button 
               variant="outline" 
               className="flex items-center"
               onClick={() => setShowFilters(!showFilters)}
             >
               <SlidersHorizontal className="h-4 w-4 mr-2" />
-              {showFilters ? "Hide Filters" : "Show Filters"}
+              {showFilters ? "Hide Filters" : "Filters"}
             </Button>
           </div>
         </div>
 
         {showFilters && (
-          <div className="mb-8">
+          <div className="mb-8 p-4 border border-gray-200 rounded-lg bg-gray-50">
             <CategoryFilters />
+            <div className="mt-4 flex flex-wrap gap-2">
+              <Button variant="outline" size="sm" className="flex items-center text-sm">
+                <Clock className="h-3 w-3 mr-1" />
+                0-3 Hours
+              </Button>
+              <Button variant="outline" size="sm" className="flex items-center text-sm">
+                <Award className="h-3 w-3 mr-1" />
+                Beginner
+              </Button>
+              <Button variant="outline" size="sm" className="text-sm">English</Button>
+              <Button variant="outline" size="sm" className="text-sm">Free</Button>
+              <Button variant="outline" size="sm" className="text-sm">Paid</Button>
+            </div>
           </div>
         )}
-
-        <div className="flex justify-between items-center mb-6">
-          <div className="text-gray-600">Showing 4 of 234 courses</div>
-          <div className="flex items-center space-x-2">
-            <span className="text-gray-600">Sort by:</span>
-            <select className="border border-gray-300 rounded-md p-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-education-500">
-              <option>Most Popular</option>
-              <option>Highest Rated</option>
-              <option>Newest</option>
-              <option>Price: Low to High</option>
-              <option>Price: High to Low</option>
-            </select>
-          </div>
-        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {courses.map((course) => (
             <CourseCard
               key={course.id}
+              id={course.id}
               title={course.title}
               instructor={course.instructor}
               rating={course.rating}
@@ -108,17 +115,20 @@ const CoursesSection = () => {
               image={course.image}
               category={course.category}
               level={course.level}
+              duration={course.duration}
+              lessons={course.lessons}
             />
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        <div className="mt-10 p-6 border border-gray-200 rounded-lg bg-gray-50">
+          <h3 className="text-xl font-bold mb-4">Top courses at an unbeatable price</h3>
+          <p className="text-gray-700 mb-4">Learn valuable, practical skills for less. Sale ends in 24 hours!</p>
           <Button 
-            variant="outline" 
-            className="border-education-500 text-education-600 hover:bg-education-50 font-medium px-6 py-3 rounded-md text-lg"
+            className="bg-education-600 hover:bg-education-700 text-white"
           >
-            <span>View All Courses</span>
-            <ArrowRight className="ml-2 h-5 w-5" />
+            <span>View Deals</span>
+            <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </div>
       </div>

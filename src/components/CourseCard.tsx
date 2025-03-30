@@ -1,4 +1,7 @@
 
+import { Clock, Star, Play } from "lucide-react";
+import { Link } from "react-router-dom";
+
 interface CourseCardProps {
   title: string;
   instructor: string;
@@ -8,6 +11,9 @@ interface CourseCardProps {
   image: string;
   category: string;
   level: string;
+  id?: number;
+  duration?: string;
+  lessons?: number;
 }
 
 const CourseCard = ({
@@ -19,57 +25,75 @@ const CourseCard = ({
   image,
   category,
   level,
+  id = 1,
+  duration = "6.5 hours",
+  lessons = 42
 }: CourseCardProps) => {
   return (
-    <div className="bg-white rounded-xl overflow-hidden shadow-md card-hover">
-      <div className="relative">
-        <img src={image} alt={title} className="w-full h-48 object-cover" />
-        <div className="absolute top-4 left-4">
-          <span className="px-3 py-1 bg-white/90 text-education-700 text-xs font-medium rounded-full">
-            {category}
-          </span>
+    <Link to={`/courses/${id}`} className="group">
+      <div className="bg-white rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow duration-300">
+        <div className="relative">
+          <img src={image} alt={title} className="w-full h-40 object-cover" />
+          <div className="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <div className="bg-education-600 rounded-full p-3">
+              <Play className="h-8 w-8 text-white" fill="white" />
+            </div>
+            <span className="absolute bottom-2 right-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">
+              Preview
+            </span>
+          </div>
         </div>
-      </div>
-      <div className="p-5">
-        <div className="mb-2">
-          <span className="text-xs font-medium px-2 py-1 bg-education-50 text-education-600 rounded-full">
-            {level}
-          </span>
-        </div>
-        <h3 className="text-lg font-semibold mb-2 text-gray-900 line-clamp-2">
-          {title}
-        </h3>
-        <p className="text-sm text-gray-600 mb-3">By {instructor}</p>
-        
-        <div className="flex items-center mb-3">
-          <div className="flex items-center">
-            <span className="text-amber-500 font-medium mr-1">{rating}</span>
+        <div className="p-4">
+          <h3 className="text-lg font-bold text-gray-900 line-clamp-2 mb-1 group-hover:text-education-600">
+            {title}
+          </h3>
+          <p className="text-sm text-gray-600 mb-2">{instructor}</p>
+          
+          <div className="flex items-center mb-1">
+            <span className="text-amber-500 font-bold mr-1">{rating}</span>
             <div className="flex">
               {[...Array(5)].map((_, i) => (
-                <svg
+                <Star
                   key={i}
                   className={`h-4 w-4 ${
-                    i < Math.floor(rating) ? "text-amber-500" : "text-gray-300"
+                    i < Math.floor(rating) ? "text-amber-500 fill-amber-500" : "text-gray-300"
                   }`}
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
+                />
               ))}
             </div>
+            <span className="text-xs text-gray-500 ml-1">({students})</span>
           </div>
-          <span className="text-xs text-gray-500 ml-2">({students} students)</span>
-        </div>
-        
-        <div className="flex items-center justify-between">
-          <span className="text-lg font-bold text-gray-900">{price}</span>
-          <button className="text-sm font-medium text-education-600 hover:text-education-700">
-            View Course
-          </button>
+          
+          <div className="flex items-center text-xs text-gray-500 mb-3">
+            <Clock className="h-3 w-3 mr-1" />
+            <span className="mr-2">{duration}</span>
+            <span>{lessons} lessons</span>
+          </div>
+          
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <span className="text-xl font-bold text-gray-900">{price}</span>
+              {parseFloat(price.replace("$", "")) > 30 && (
+                <span className="text-sm line-through text-gray-500 ml-2">
+                  ${Math.round(parseFloat(price.replace("$", "")) * 1.7).toFixed(2)}
+                </span>
+              )}
+            </div>
+            <span className="text-xs px-2 py-1 bg-education-50 text-education-700 rounded-full">
+              {level}
+            </span>
+          </div>
+          
+          {parseFloat(price.replace("$", "")) > 30 && (
+            <div className="mt-2">
+              <span className="text-xs font-medium text-red-600">
+                2 days left at this price!
+              </span>
+            </div>
+          )}
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
