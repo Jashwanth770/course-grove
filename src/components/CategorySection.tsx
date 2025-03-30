@@ -10,11 +10,11 @@ interface CategoryCardProps {
 
 const CategoryCard = ({ icon, title, link }: CategoryCardProps) => {
   return (
-    <Link to={link} className="flex flex-col items-center p-6 border border-gray-200 rounded-lg hover:shadow-md transition-all bg-white group">
-      <div className="mb-4 text-gray-600 group-hover:text-education-600 transition-colors">
+    <Link to={link} className="flex flex-col items-center p-4 text-center hover:text-education-600 transition-colors">
+      <div className="mb-3 text-gray-700">
         {icon}
       </div>
-      <h3 className="text-center text-gray-800 font-medium">{title}</h3>
+      <h3 className="text-sm font-medium">{title}</h3>
     </Link>
   );
 };
@@ -69,10 +69,10 @@ const CategorySection = () => {
   ];
 
   return (
-    <section className="py-12 bg-gray-50">
+    <section className="py-8 border-b border-gray-200">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-8">Top Categories</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">Top Categories</h2>
+        <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-9 gap-2">
           {categories.map((category, index) => (
             <CategoryCard
               key={index}

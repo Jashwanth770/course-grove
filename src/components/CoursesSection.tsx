@@ -66,12 +66,32 @@ const CoursesSection = () => {
   return (
     <section id="courses" className="py-16 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center mb-8">
-          <div>
-            <h2 className="text-2xl md:text-3xl font-bold">Students are viewing</h2>
-            <p className="text-gray-600">Courses being watched right now</p>
+        <div className="mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-1">Courses to get you started</h2>
+          <p className="text-gray-600 mb-4">Our most popular courses for beginners</p>
+          
+          <div className="flex flex-wrap gap-3 mb-4">
+            <Button 
+              variant="outline" 
+              className="bg-white border-gray-300 text-gray-800 font-medium rounded-full"
+            >
+              Most Popular
+            </Button>
+            <Button 
+              variant="outline" 
+              className="bg-white border-gray-300 text-gray-800 font-medium rounded-full"
+            >
+              New
+            </Button>
+            <Button 
+              variant="outline" 
+              className="bg-white border-gray-300 text-gray-800 font-medium rounded-full"
+            >
+              Trending
+            </Button>
           </div>
-          <div className="flex items-center">
+
+          <div className="flex items-center justify-end mb-4">
             <Button 
               variant="outline" 
               className="flex items-center"
@@ -121,13 +141,12 @@ const CoursesSection = () => {
           ))}
         </div>
 
-        <div className="mt-10 p-6 border border-gray-200 rounded-lg bg-gray-50">
-          <h3 className="text-xl font-bold mb-4">Top courses at an unbeatable price</h3>
-          <p className="text-gray-700 mb-4">Learn valuable, practical skills for less. Sale ends in 24 hours!</p>
+        <div className="mt-10 flex justify-end">
           <Button 
-            className="bg-education-600 hover:bg-education-700 text-white"
+            variant="outline"
+            className="flex items-center text-education-600 hover:bg-education-50"
           >
-            <span>View Deals</span>
+            <span>Explore more courses</span>
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </div>
